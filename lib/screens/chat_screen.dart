@@ -19,60 +19,58 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   _buildMessage(Message message, bool isMe) {
-    final Widget msg = Padding(
-        padding: EdgeInsets.only(left: 10, right: 10),
-        child: Container(
-          margin: isMe
-              ? EdgeInsets.only(
-                  top: 8.0,
-                  bottom: 8.0,
-                  left: 80.0,
-                )
-              : EdgeInsets.only(
-                  top: 8.0,
-                  bottom: 8.0,
-                ),
-          padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 15.0),
-          width: MediaQuery.of(context).size.width * 0.75,
-          decoration: BoxDecoration(
-            color: isMe ? Colors.green.shade200 : Color(0xFFFFEFEE),
-            borderRadius: isMe
-                ? BorderRadius.only(
-                    topLeft: Radius.circular(15.0),
-                    bottomLeft: Radius.circular(15.0),
-                    bottomRight: Radius.circular(15.0),
-                    topRight: Radius.circular(15.0),
-                  )
-                : BorderRadius.only(
-                    topRight: Radius.circular(15.0),
-                    bottomRight: Radius.circular(15.0),
-                    topLeft: Radius.circular(15.0),
-                    bottomLeft: Radius.circular(15.0),
-                  ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                message.time.toString(),
-                style: TextStyle(
-                  color: isMe ? Colors.green : Colors.grey,
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.w600,
-                ),
+    final Widget msg = Container(
+      margin: isMe
+          ? EdgeInsets.only(
+              top: 8.0,
+              bottom: 8.0,
+              left: 80.0,
+            )
+          : EdgeInsets.only(
+              top: 8.0,
+              bottom: 8.0,
+            ),
+      padding: EdgeInsets.symmetric(horizontal: 22.0, vertical: 15.0),
+      width: MediaQuery.of(context).size.width * 0.75,
+      decoration: BoxDecoration(
+        color: isMe ? Colors.green.shade200 : Color(0xFFFFEFEE),
+        borderRadius: isMe
+            ? BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                bottomLeft: Radius.circular(15.0),
+                // bottomRight: Radius.circular(15.0),
+                // topRight: Radius.circular(15.0),
+              )
+            : BorderRadius.only(
+                topRight: Radius.circular(15.0),
+                bottomRight: Radius.circular(15.0),
+                // topLeft: Radius.circular(15.0),
+                // bottomLeft: Radius.circular(15.0),
               ),
-              SizedBox(height: 8.0),
-              Text(
-                message.text.toString(),
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            message.time.toString(),
+            style: TextStyle(
+              color: isMe ? Colors.green : Colors.grey,
+              fontSize: 14.0,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ));
+          SizedBox(height: 8.0),
+          Text(
+            message.text.toString(),
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
     if (isMe) {
       return msg;
     }

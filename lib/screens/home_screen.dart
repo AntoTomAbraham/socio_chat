@@ -1,7 +1,12 @@
 import 'package:chat_app_/models/message_model.dart';
 import 'package:chat_app_/screens/add_group.dart';
+import 'package:chat_app_/screens/game.dart';
+import 'package:chat_app_/screens/gamesvideo.dart';
+import 'package:chat_app_/screens/getanime.dart';
+import 'package:chat_app_/screens/getmovies.dart';
 import 'package:chat_app_/screens/group_screen.dart';
 import 'package:chat_app_/screens/groupparticipantsselection.dart';
+import 'package:chat_app_/screens/nft_screen.dart';
 import 'package:chat_app_/screens/searchscreen.dart';
 import 'package:chat_app_/widgets/chat_widget.dart';
 import 'package:chat_app_/widgets/iconn.dart';
@@ -53,6 +58,31 @@ class _homescreenState extends State<homescreen> {
                     Get.to(groupselection());
                   },
                   child: tile("New Group", Icons.group)),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(getmovies());
+                  },
+                  child: tile("Watch Movies", Icons.tv)),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(getanime());
+                  },
+                  child: tile("Watch Animes", Icons.tv_sharp)),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(ntfscreen());
+                  },
+                  child: tile("NFTs", Icons.photo_album)),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(GamesVideoScreen());
+                  },
+                  child: tile("Game Video", Icons.games)),
+              GestureDetector(
+                  onTap: () {
+                    Get.to(games());
+                  },
+                  child: tile("Games", Icons.games)),
               tile("Contact", Icons.person),
               tile("Calls", Icons.call),
               tile("People", Icons.near_me),
