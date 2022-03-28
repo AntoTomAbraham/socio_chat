@@ -45,11 +45,12 @@ class games extends StatelessWidget {
                           crossAxisCount: 3,
                           mainAxisSpacing: 1,
                           crossAxisSpacing: 4,
+                          itemCount: Game!.games!.length,
                           itemBuilder: (context, i) {
                             return GestureDetector(
                               onTap: () {
                                 Get.to(playgame(
-                                    gameLink: Game!.games![i].url as String));
+                                    gameLink: Game.games![i].url as String));
                               },
                               child: Container(
                                 height: 140,
@@ -60,7 +61,7 @@ class games extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Image.network(
-                                      Game!.games![i].assets!.cover as String,
+                                      Game.games![i].assets!.cover as String,
                                       fit: BoxFit.cover,
                                     ),
                                     // Row(

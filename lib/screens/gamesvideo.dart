@@ -149,13 +149,23 @@ class _GamesVideoScreenState extends State<GamesVideoScreen> {
                         future: getJsonfortwitch(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
+                            Topgame? topgamee = snapshot.data as Topgame?;
                             return MasonryGridView.count(
                               crossAxisCount: 2,
                               mainAxisSpacing: 1,
                               crossAxisSpacing: 4,
+                              itemCount: topgamee!.data!.length,
                               itemBuilder: (context, index) {
                                 Topgame? topgame = snapshot.data as Topgame?;
-                                print(topgame!.data![index].thumbnailUrl);
+                                String thumbnail = topgame!
+                                    .data![index].thumbnailUrl as String;
+                                thumbnail =
+                                    thumbnail.replaceAll("%{width}", "400");
+                                thumbnail =
+                                    thumbnail.replaceAll("%{height}", "300");
+                                print("THis is image");
+                                print(thumbnail);
+                                //print(topgame.data![index].thumbnailUrl);
                                 return GestureDetector(
                                     onTap: () {
                                       Get.to(playtwitch(
@@ -187,7 +197,8 @@ class _GamesVideoScreenState extends State<GamesVideoScreen> {
                                               height: 140,
                                               width: 160,
                                               child: Image.network(
-                                                "https://tse4.mm.bing.net/th?id=OIP.a4g1NoYJgs3Oys6g8E71PAHaEK&pid=Api&P=0&w=280&h=157",
+                                                thumbnail,
+                                                //"https://tse4.mm.bing.net/th?id=OIP.a4g1NoYJgs3Oys6g8E71PAHaEK&pid=Api&P=0&w=280&h=157",
                                                 //'https://static-cdn.jtvnw.net/previews-ttv/live_user_${topgame.data![index].userLogin}.jpg',
                                                 fit: BoxFit.contain,
                                               ),
@@ -213,7 +224,6 @@ class _GamesVideoScreenState extends State<GamesVideoScreen> {
                           } else {
                             return Center(child: CircularProgressIndicator());
                           }
-                         
                         }),
                   )
                 : Container(height: 100)
